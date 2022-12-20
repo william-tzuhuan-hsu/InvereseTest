@@ -46,7 +46,37 @@ for (int i = 0; i < 100; i++) {
 clock_t end = clock();
 double elapsed_secs = double(end - begin) / CLOCKS_PER_SEC;
 
-time << elapsed_secs << " seconds" << endl;
+time << elapsed_secs << " seconds" << endl << " fullPiLu" << endl;
+
+
+
+// Start timing
+clock_t begin2 = clock();
+for (int i = 0; i < 100; i++) {
+    MatrixXd x = m1.partialPivLu().solve(v1);
+}
+
+// End timing
+clock_t end2 = clock();
+double elapsed_secs2 = double(end2 - begin2) / CLOCKS_PER_SEC;
+
+time << elapsed_secs2 << " seconds" << endl << " partialPiLu" << endl;
+
+// Start timing
+clock_t begin3 = clock();
+for (int i = 0; i < 100; i++) {
+    MatrixXd x = m1.householderQr().solve(v1);
+}
+
+// End timing
+clock_t end3 = clock();
+double elapsed_secs3 = double(end2 - begin2) / CLOCKS_PER_SEC;
+
+time << elapsed_secs3 << " seconds" << endl << " householderQr" << endl;
+
+
+
 
 return 0;
 }
+
